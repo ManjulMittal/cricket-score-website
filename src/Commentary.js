@@ -64,9 +64,7 @@ class Commentary extends Component{
           </div>
       )
     }else{
-      var commentary = commentaryTest.filter(function(comm){
-        return comm.commtxt !== undefined
-      })
+      var commentary = commentaryTest
       return (
         <div className="App">
             <Dheader />
