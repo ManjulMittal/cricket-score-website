@@ -1,6 +1,8 @@
 import {Link} from 'react-router-dom'
 function HandleScores(props){
     let obj = props.obj;
+    let team1Name = props.team1;
+    let team2Name = props.team2;
     if(obj === undefined){
         return (
             <div>No Scores</div>
@@ -71,11 +73,11 @@ function HandleScores(props){
     return (
         <div>
             <h4>Innings1</h4>
-            <h2>Team1</h2>
+            <h2>{team1Name}</h2>
             <div>Runs: {scard["team1inngs1Runs"]}</div>
             <div>Wickets: {scard["team1inngs1Wickets"]}</div>
             <div>Overs: {scard["team1inngs1Overs"]}</div>
-            <h2>Team2</h2>
+            <h2>{team2Name}</h2>
             <div>Runs: {scard["team2inngs1Runs"]}</div>
             <div>Wickets: {scard["team2inngs1Wickets"]}</div>
             <div>Overs: {scard["team2inngs1Overs"]}</div>
@@ -85,20 +87,20 @@ function HandleScores(props){
         return (
         <div>
             <h4>Innings1</h4>
-            <h2>Team1</h2>
+            <h2>{team1Name}</h2>
             <div>Runs: {scard["team1inngs1Runs"]}</div>
             <div>Wickets: {scard["team1inngs1Wickets"]}</div>
             <div>Overs: {scard["team1inngs1Overs"]}</div>
-            <h2>Team2</h2>
+            <h2>{team2Name}</h2>
             <div>Runs: {scard["team2inngs1Runs"]}</div>
             <div>Wickets: {scard["team2inngs1Wickets"]}</div>
             <div>Overs: {scard["team2inngs1Overs"]}</div>
             <h4>Innings2</h4>
-            <h2>Team1</h2>
+            <h2>{team1Name}</h2>
             <div>Runs: {scard["team1inngs2Runs"]}</div>
             <div>Wickets: {scard["team1inngs2Wickets"]}</div>
             <div>Overs: {scard["team1inngs2Overs"]}</div>
-            <h2>Team2</h2>
+            <h2>{team2Name}</h2>
             <div>Runs: {scard["team2inngs2Runs"]}</div>
             <div>Wickets: {scard["team2inngs2Wickets"]}</div>
             <div>Overs: {scard["team2inngs2Overs"]}</div>
@@ -151,8 +153,8 @@ function RecentDetails(props){
         <div>
             <h1>{opc["matchType"]}</h1>
             {opcMatches.map(match => (
-                <div  className='btn-block btn-outline-info' key={match["matchId"]}>
-                    <Link to={'/matchCommentary/' + match["matchId"]}>
+                <div key={match["matchId"]}>
+                    <Link to={'/matchDetails/' + match["matchId"]}>
 
                     <div>Series Name: {match["seriesName"]}</div>
                     
@@ -170,7 +172,7 @@ function RecentDetails(props){
 
                     <div>Status: {match["status"]}</div>
 
-                    <div>Score: <HandleScores obj = {match["scores"]} /></div>
+                    <div>Score: <HandleScores obj = {match["scores"]} team1={match["team1Name"]} team2={match["team2Name"]}/></div>
                     </Link>
                 </div>
             ))}

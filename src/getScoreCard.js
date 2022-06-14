@@ -126,7 +126,6 @@ function BowlerTable(props) {
 
 function WicketsTable(props) { 
     var data = props.wickets.fow;
-    console.log(data);
     return ( 
         <div className="App"> 
         <table> 

@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import {scorecard,BatsmanTable,BowlerTable,WicketsTable} from './getScoreCard';
-import Dheader from './detailsHeader';
+import {Link} from 'react-router-dom'
 
 class Matchdetails extends Component{
   constructor(props){
@@ -8,7 +8,7 @@ class Matchdetails extends Component{
     this.state = {
       isLoaded : false,
       items : [],
-      
+      matchId: undefined,
     }
   }
 
@@ -29,17 +29,18 @@ class Matchdetails extends Component{
         this.setState({
           isLoaded : true,
           items : json, 
+          matchId: matchID,
         })
       })
   }
 
   render(){
-    var { isLoaded , items } = this.state;
+    var { isLoaded , items, matchId} = this.state;
     var i = 1;
     if(!isLoaded){
         return (
           <div>
-          <Dheader />
+          <Link to={'/matchCommentary/' + matchId}>Commentary</Link>
           <div> It's Loading....</div>
         </div>
             )
@@ -48,11 +49,11 @@ class Matchdetails extends Component{
         var scores = obj.scorecard;
       return (
         <div className="App">
-          <Dheader />
+          <Link to={'/matchCommentary/' + matchId}>Commentary</Link>
           <h1>ScoreCard</h1>
           <ul>
           {scores.map(item => (
-              <li key={i++} className='btn-block'>
+              <li key={i++}>
                 <BatsmanTable batsman={item.batsman} />
                 <br></br>
                 <br></br>

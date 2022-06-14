@@ -1,14 +1,12 @@
 import React from 'react'
-import Header from './Header';
+import './Front.css'
+import './Images/100.jpeg';
 function Front(){
   return(
       <>
-      <Header />
-    <div>
-        <h1>Welcome to Cricket Score Website</h1>
-        Here you can access to live , recent and upcoming matches through the above links 
-        <br></br>
-        Website Creaters: Parth Manchanda , Manjul Mittal
+      <img id="image" className="slide" src="./Images/100.png" alt="" />
+      <div>
+        <footer>Developers: Parth Manchanda & Manjul Mittal</footer>
     </div>
     </>
   )

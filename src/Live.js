@@ -1,7 +1,6 @@
 import './App.css';
 import RecentDetails from './recentDetails'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './Header';
 import React,{Component} from 'react'
 class Live extends Component{
   constructor(props){
@@ -38,7 +37,6 @@ class Live extends Component{
     if(!isLoaded){
         return (
           <div>
-            <Header />
             <div> It's Loading....</div>
           </div>
             )
@@ -47,14 +45,12 @@ class Live extends Component{
         if(recent === undefined){
             return (
               <div>
-                <Header />
                 <div>There are no matches at the moment</div>
               </div>
             )
         }
       return (
         <div className="App">
-          <Header />
           <h1>Live</h1>
           <div>
             {recent.map(item => (

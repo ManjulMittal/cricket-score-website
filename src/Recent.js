@@ -2,7 +2,6 @@ import './App.css';
 import RecentDetails from './recentDetails'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React,{Component} from 'react'
-import Header from './Header';
 class Recent extends Component{
   constructor(props){
     super(props);
@@ -38,7 +37,6 @@ class Recent extends Component{
     if(!isLoaded){
         return (
           <div>
-          <Header />
           <div> It's Loading....</div>
         </div>
             )
@@ -46,7 +44,6 @@ class Recent extends Component{
         var recent = items["typeMatches"];
       return (
         <div className="App">
-          <Header />
           <h1>Recent</h1>
           <div>
             {recent.map(item => (

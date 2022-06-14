@@ -1,7 +1,5 @@
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import React,{Component} from 'react'
-import Header from './Header';
+import './news.css';
 class News extends Component{
   constructor(props){
     super(props);
@@ -36,7 +34,6 @@ class News extends Component{
     if(!isLoaded){
       return (
           <div>
-              <Header />
             <div> It's Loading....</div>
           </div>
       )
@@ -47,17 +44,17 @@ class News extends Component{
         })
         console.log(News);
       return (
-        <div className="App">
-            <Header />
-          <h1>News</h1>
-          <ul>
+        <div>
+          <ul className='news_list'>
             {News.map(item => (
-              <li key={i++} className='btn-block btn-outline-info'>
+              <li key={i++} className='box'>
+                <div className='top-div'>
                 <h3>{item["story"]["hline"]}</h3>
-                <br></br>
+                </div>
+                <div className='bottom-div'>
                 <p>{item["story"]["intro"]}</p> <br></br> 
-                <p>{item["story"]["seoHeadline"]}</p> <br></br>
                 <p>{item["story"]["context"]}</p>
+                </div>
               </li>
             ))}
           </ul>

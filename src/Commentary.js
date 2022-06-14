@@ -1,13 +1,13 @@
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import React,{Component} from 'react'
-import Dheader from './detailsHeader';
+import {Link} from 'react-router-dom'
+
 class Commentary extends Component{
   constructor(props){
     super(props);
     this.state = {
       isLoaded : false,
       items : [],
+      matchId: undefined,
     }
   }
 
@@ -47,33 +47,36 @@ class Commentary extends Component{
       .then(json => {
         this.setState({
           isLoaded : true,
-          items : json, 
+          items : json,
+          matchId: matchID,
         })
       })
   }
 
   render(){
-    var { isLoaded , items } = this.state;
+    var { isLoaded , items, matchId } = this.state;
     var i = 1;
     var commentaryTest = items.commentaryLines;
     if(!isLoaded){
       return (
           <div>
-              <Dheader />
+            <div>
+            <Link to={'/matchDetails/' + matchId}>ScoreCard</Link>  </div>
             <div> It's Loading....</div>
           </div>
       )
     }else{
       var commentary = commentaryTest
       return (
-        <div className="App">
-            <Dheader />
+        <div>
+          <div>
+          <Link to={'/matchDetails/' + matchId}>ScoreCard</Link></div>
           <h1>Commentary</h1>
           <ul>
             {commentary.map(item => (
-              <li key={i++} className='btn-block btn-outline-info'>
-                {this.printComment(item)}
-              </li>
+              item.commentary === undefined ? null : <li key={i++}>
+              {this.printComment(item)}
+            </li>
             ))}
           </ul>
         </div>
