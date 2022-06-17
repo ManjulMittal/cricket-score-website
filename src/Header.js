@@ -7,19 +7,19 @@ import './Header.css';
         <div>
             <ul className='nav'>
                 <li>
-                    <Link to='/'>Home</Link>
+                    <Link to='/' className="bt">Home</Link>
                 </li>
                 <li>
-                    <Link to='/recent'>Recent</Link>
+                    <Link to='/recent' className="bt">Recent</Link>
                 </li>
                 <li>
-                    <Link to='/live'>Live</Link>
+                    <Link to='/live' className="bt">Live</Link>
                 </li>
                 <li>
-                    <Link to='/upcoming'>Upcoming</Link>
+                    <Link to='/upcoming' className="bt">Upcoming</Link>
                 </li>
                 <li>
-                    <Link to='/news'>News</Link>
+                    <Link to='/news' className="bt">News</Link>
                 </li>
             </ul>
         </div>

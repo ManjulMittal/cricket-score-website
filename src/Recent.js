@@ -1,6 +1,6 @@
-import './App.css';
+//import './App.css';
 import RecentDetails from './recentDetails'
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import React,{Component} from 'react'
 class Recent extends Component{
   constructor(props){
@@ -37,14 +37,13 @@ class Recent extends Component{
     if(!isLoaded){
         return (
           <div>
-          <div> It's Loading....</div>
+          <div className="Loading"> It's Loading....</div>
         </div>
             )
     }else{
         var recent = items["typeMatches"];
       return (
-        <div className="App">
-          <h1>Recent</h1>
+        <div>
           <div>
             {recent.map(item => (
               <div key={i++}>

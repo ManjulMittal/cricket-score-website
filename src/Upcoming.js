@@ -1,7 +1,7 @@
-import './App.css';
 import UpcomingDetails from './upcomingDetails'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import React,{Component} from 'react'
+import './Recent.css';
+
 class Upcoming extends Component{
   constructor(props){
     super(props);
@@ -37,14 +37,13 @@ class Upcoming extends Component{
     if(!isLoaded){
         return (
           <div>
-          <div> It's Loading....</div>
+          <div className="Loading"> It's Loading....</div>
         </div>
             )
     }else{
         var upcoming = items["typeMatches"];
       return (
-        <div className="App">
-          <h1>Upcoming</h1>
+        <div>
           <div>
             {upcoming.map(item => (
               <div key={i++}>

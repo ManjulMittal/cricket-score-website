@@ -1,3 +1,4 @@
+import './Scorecard.css';
 function scorecard(obj){
     if(obj.scorecard){
         for(let inns in obj.scorecard){
@@ -65,24 +66,24 @@ function BatsmanTable(props) {
         <table> 
         <tbody>
             <tr> 
-            <th>Name</th> 
+            <th>Batter</th>
+            <th></th>
+            <th>Runs</th>  
             <th>Balls</th> 
-            <th>Runs</th> 
-            <th>Strike Rate</th> 
             <th>Fours</th> 
             <th>Sixes</th>
-            <th>Out Decision</th> 
+            <th>Strike Rate</th> 
             </tr> 
             {data.map((player) => { 
             return ( 
                 <tr key={player["id"]}> 
-                <td>{player["name"]}</td> 
-                <td>{player["balls"]}</td> 
-                <td>{player["runs"]}</td> 
-                <td>{player["strkRate"]}</td> 
+                <td>{player["name"]}</td>
+                <td>{player["outDec"]}</td>
+                <td>{player["runs"]}</td>  
+                <td>{player["balls"]}</td>  
                 <td>{player["fours"]}</td> 
                 <td>{player["sixes"]}</td>
-                <td>{player["outDec"]}</td> 
+                <td>{player["strkRate"]}</td>
                 </tr> 
             ) 
             })} 
@@ -99,22 +100,22 @@ function BowlerTable(props) {
         <table> 
         <tbody>
             <tr> 
-            <th>Name</th> 
-            <th>Overs</th> 
-            <th>Runs</th> 
+            <th>Bowler</th>
+            <th>Overs</th>
             <th>Maidens</th> 
-            <th>Economy</th> 
+            <th>Runs</th>
             <th>Wickets</th>
+            <th>Economy</th> 
             </tr> 
             {data.map((player) => { 
             return ( 
                 <tr key={player["id"]}> 
                 <td>{player["name"]}</td> 
-                <td>{player["overs"]}</td> 
-                <td>{player["runs"]}</td> 
-                <td>{player["maidens"]}</td> 
-                <td>{player["economy"]}</td> 
+                <td>{player["overs"]}</td>
+                <td>{player["maidens"]}</td>  
+                <td>{player["runs"]}</td>
                 <td>{player["wickets"]}</td>
+                <td>{player["economy"]}</td> 
                 </tr> 
             ) 
             })} 

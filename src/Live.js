@@ -1,6 +1,6 @@
-import './App.css';
+//import './App.css';
 import RecentDetails from './recentDetails'
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import React,{Component} from 'react'
 class Live extends Component{
   constructor(props){
@@ -37,7 +37,7 @@ class Live extends Component{
     if(!isLoaded){
         return (
           <div>
-            <div> It's Loading....</div>
+            <div className="Loading"> It's Loading....</div>
           </div>
             )
     }else{
@@ -45,13 +45,12 @@ class Live extends Component{
         if(recent === undefined){
             return (
               <div>
-                <div>There are no matches at the moment</div>
+                <div className="Loading">There are no matches at the moment</div>
               </div>
             )
         }
       return (
-        <div className="App">
-          <h1>Live</h1>
+        <div>
           <div>
             {recent.map(item => (
               <div key={i++}>

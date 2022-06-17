@@ -1,21 +1,56 @@
 import {Link} from 'react-router-dom'
+import './Recent.css';
+
+function overTransform(initial){
+    if(initial === undefined){
+        return "";
+    }
+    if((parseFloat(initial)*10)%10==6){
+        let tmp = parseInt(initial)+1;
+        initial = tmp;
+        initial += ".0";
+    }
+    else if((parseFloat(initial)*10)%10==0){
+        initial += ".0";
+    }
+    return initial;
+}
+
 function HandleScores(props){
     let obj = props.obj;
     let team1Name = props.team1;
     let team2Name = props.team2;
     if(obj === undefined){
         return (
-            <div>No Scores</div>
+            <div className='Loading'>No Scores</div>
         )
     }
     let scard = {};
     if(obj.team1Score){
         if(obj.team1Score.inngs1){
-            if(obj.team1Score.inngs1.inningsId && obj.team1Score.inngs1.runs && obj.team1Score.inngs1.wickets && obj.team1Score.inngs1.overs){
-                scard["team1inngs1Runs"] = obj.team1Score.inngs1.runs;
-                scard["team1inngs1Wickets"] = obj.team1Score.inngs1.wickets;
-                scard["team1inngs1Overs"] = obj.team1Score.inngs1.overs;
+            if(obj.team1Score.inngs1.inningsId){
                 scard["team1inngs1id"] = obj.team1Score.inngs1.inningsId;
+                if(obj.team1Score.inngs1.runs){
+                    scard["team1inngs1Runs"] = obj.team1Score.inngs1.runs;
+                }
+                else{
+                    scard["team1inngs1Runs"] = "0";
+                }
+
+                if(obj.team1Score.inngs1.wickets){
+                    scard["team1inngs1Wickets"] = obj.team1Score.inngs1.wickets;
+                }
+                else{
+                    scard["team1inngs1Wickets"] = "0";
+                }
+                
+                if(obj.team1Score.inngs1.overs){
+                    scard["team1inngs1Overs"] = obj.team1Score.inngs1.overs;
+                }
+                else{
+                    scard["team1inngs1Runs"] = "    ";
+                    scard["team1inngs1Overs"] = "0.0";
+                }
             }
             if(obj.team1Score.inngs1.isDeclared){
                 scard["team1inngs1Dec"] = obj.team1Score.inngs1.isDeclared;
@@ -25,85 +60,136 @@ function HandleScores(props){
             }
         }
         if(obj.team1Score.inngs2){
-            if(obj.team1Score.inngs2.inningsId && obj.team1Score.inngs2.runs && obj.team1Score.inngs2.wickets && obj.team1Score.inngs2.overs){
-                scard["team1inngs2Runs"] = obj.team1Score.inngs2.runs;
-                scard["team1inngs2Wickets"] = obj.team1Score.inngs2.wickets;
-                scard["team1inngs2Overs"] = obj.team1Score.inngs2.overs;
+            if(obj.team1Score.inngs2.inningsId){
                 scard["team1inngs2id"] = obj.team1Score.inngs2.inningsId;
-            }
-            if(obj.team1Score.inngs2.isDeclared){
-                scard["team1inngs2Dec"] = obj.team1Score.inngs2.isDeclared;
-            }
-            if(obj.team1Score.inngs2.isFollowOn){
-                scard["team1inngs2FO"] = obj.team1Score.inngs2.isFollowOn;
+                if(obj.team1Score.inngs2.runs){
+                    scard["team1inngs2Runs"] = obj.team1Score.inngs2.runs;
+                }
+                else{
+                    scard["team1inngs2Runs"] = "0";
+                }
+    
+                if(obj.team1Score.inngs2.wickets){
+                    scard["team1inngs2Wickets"] = obj.team1Score.inngs2.wickets;
+                }
+                else{
+                    scard["team1inngs2Wickets"] = "0";
+                }
+                    
+                if(obj.team1Score.inngs2.overs){
+                    scard["team1inngs2Overs"] = obj.team1Score.inngs2.overs;
+                }
+                else{
+                    scard["team1inngs2Runs"] = "   ";
+                    scard["team1inngs2Overs"] = "0.0";
+                }
+                if(obj.team1Score.inngs2.isDeclared){
+                    scard["team1inngs2Dec"] = obj.team1Score.inngs2.isDeclared;
+                }
+                if(obj.team1Score.inngs2.isFollowOn){
+                    scard["team1inngs2FO"] = obj.team1Score.inngs2.isFollowOn;
+                }
             }
         }
     }
     if(obj.team2Score){
         if(obj.team2Score.inngs1){
-            if(obj.team2Score.inngs1.inningsId && obj.team2Score.inngs1.runs && obj.team2Score.inngs1.wickets && obj.team2Score.inngs1.overs){
-                scard["team2inngs1Runs"] = obj.team2Score.inngs1.runs;
-                scard["team2inngs1Wickets"] = obj.team2Score.inngs1.wickets;
-                scard["team2inngs1Overs"] = obj.team2Score.inngs1.overs;
+            if(obj.team2Score.inngs1.inningsId){
                 scard["team2inngs1id"] = obj.team2Score.inngs1.inningsId;
-            }
-            if(obj.team2Score.inngs1.isDeclared){
-                scard["team2inngs1Dec"] = obj.team2Score.inngs1.isDeclared;
-            }
-            if(obj.team2Score.inngs1.isFollowOn){
-                scard["team2inngs1FO"] = obj.team2Score.inngs1.isFollowOn;
+                if(obj.team2Score.inngs1.runs){
+                    scard["team2inngs1Runs"] = obj.team2Score.inngs1.runs;
+                }
+                else{
+                    scard["team2inngs1Runs"] = "0";
+                }
+    
+                if(obj.team2Score.inngs1.wickets){
+                    scard["team2inngs1Wickets"] = obj.team2Score.inngs1.wickets;
+                }
+                else{
+                    scard["team2inngs1Wickets"] = "0";
+                }
+                    
+                if(obj.team2Score.inngs1.overs){
+                    scard["team2inngs1Overs"] = obj.team2Score.inngs1.overs;
+                }
+                else{
+                    scard["team2inngs1Runs"] = "   ";
+                    scard["team2inngs1Overs"] = "0.0";
+                }
+                if(obj.team2Score.inngs1.isDeclared){
+                    scard["team2inngs1Dec"] = obj.team2Score.inngs1.isDeclared;
+                }
+                if(obj.team2Score.inngs1.isFollowOn){
+                    scard["team2inngs1FO"] = obj.team2Score.inngs1.isFollowOn;
+                }
             }
         }
         if(obj.team2Score.inngs2){
-            if(obj.team2Score.inngs2.inningsId && obj.team2Score.inngs2.runs && obj.team2Score.inngs2.wickets && obj.team2Score.inngs2.overs){
-                scard["team2inngs2Runs"] = obj.team2Score.inngs2.runs;
-                scard["team2inngs2Wickets"] = obj.team2Score.inngs2.wickets;
-                scard["team2inngs2Overs"] = obj.team2Score.inngs2.overs;
+            if(obj.team2Score.inngs2.inningsId){
                 scard["team2inngs2id"] = obj.team2Score.inngs2.inningsId;
-            }
-            if(obj.team2Score.inngs2.isDeclared){
-                scard["team2inngs2Dec"] = obj.team2Score.inngs2.isDeclared;
-            }
-            if(obj.team1Score.inngs1.isFollowOn){
-                scard["team2inngs2FO"] = obj.team2Score.inngs2.isFollowOn;
+                if(obj.team2Score.inngs2.runs){
+                    scard["team2inngs2Runs"] = obj.team2Score.inngs2.runs;
+                }
+                else{
+                    scard["team2inngs2Runs"] = "0";
+                }
+        
+                if(obj.team2Score.inngs2.wickets){
+                    scard["team2inngs2Wickets"] = obj.team2Score.inngs2.wickets;
+                }
+                else{
+                    scard["team2inngs2Wickets"] = "0";
+                }        
+                    
+                if(obj.team2Score.inngs2.overs){
+                    scard["team2inngs2Overs"] = obj.team2Score.inngs2.overs;
+                }
+                else{
+                    scard["team2inngs2Runs"] = " ";
+                    scard["team2inngs2Overs"] = "0.0";
+                }
+                if(obj.team2Score.inngs2.isDeclared){
+                    scard["team2inngs2Dec"] = obj.team2Score.inngs2.isDeclared;
+                }
+                if(obj.team2Score.inngs2.isFollowOn){
+                    scard["team2inngs2FO"] = obj.team2Score.inngs2.isFollowOn;
+                }
             }
         }
     }
-    if(scard["team1inngs2Runs"] === undefined){
+    if(scard["team1inngs2Runs"] === undefined && scard["team2inngs2Runs"] === undefined){
     return (
         <div>
-            <h4>Innings1</h4>
-            <h2>{team1Name}</h2>
-            <div>Runs: {scard["team1inngs1Runs"]}</div>
-            <div>Wickets: {scard["team1inngs1Wickets"]}</div>
-            <div>Overs: {scard["team1inngs1Overs"]}</div>
-            <h2>{team2Name}</h2>
-            <div>Runs: {scard["team2inngs1Runs"]}</div>
-            <div>Wickets: {scard["team2inngs1Wickets"]}</div>
-            <div>Overs: {scard["team2inngs1Overs"]}</div>
+            <div className="rc_block">
+            <div className="rc_team">{team1Name}</div>
+            {scard["team1inngs1Overs"] === undefined ? <div>{scard["team1inngs1Runs"]}</div> :
+            <div className="rc_score">{scard["team1inngs1Runs"]}/{scard["team1inngs1Wickets"]}</div>}
+            <div className="rc_overs">{overTransform(scard["team1inngs1Overs"])}</div>
+            </div>
+            <div className="rc_block">
+            <div className="rc_team">{team2Name}</div>
+            {scard["team2inngs1Overs"] === undefined ? <div>{scard["team2inngs1Runs"]}</div> :
+            <div className="rc_score">{scard["team2inngs1Runs"]}/{scard["team2inngs1Wickets"]}</div>}
+            <div className="rc_overs">{overTransform(scard["team2inngs1Overs"])}</div>
+            </div>
         </div>
     )
     }else{
         return (
         <div>
-            <h4>Innings1</h4>
-            <h2>{team1Name}</h2>
-            <div>Runs: {scard["team1inngs1Runs"]}</div>
-            <div>Wickets: {scard["team1inngs1Wickets"]}</div>
-            <div>Overs: {scard["team1inngs1Overs"]}</div>
-            <h2>{team2Name}</h2>
-            <div>Runs: {scard["team2inngs1Runs"]}</div>
-            <div>Wickets: {scard["team2inngs1Wickets"]}</div>
-            <div>Overs: {scard["team2inngs1Overs"]}</div>
-            <h4>Innings2</h4>
-            <h2>{team1Name}</h2>
-            <div>Runs: {scard["team1inngs2Runs"]}</div>
-            <div>Wickets: {scard["team1inngs2Wickets"]}</div>
-            <div>Overs: {scard["team1inngs2Overs"]}</div>
-            <h2>{team2Name}</h2>
-            <div>Runs: {scard["team2inngs2Runs"]}</div>
-            <div>Wickets: {scard["team2inngs2Wickets"]}</div>
-            <div>Overs: {scard["team2inngs2Overs"]}</div>
+            <div className="rc_block">
+            <div className="rc_team">{team1Name}</div>
+            {scard["team1inngs2Overs"] === undefined ?
+            <div className="rc_score">{scard["team1inngs1Runs"]}/{scard["team1inngs1Wickets"]}</div>
+            : <div className="rc_score">{scard["team1inngs1Runs"]}/{scard["team1inngs1Wickets"]}  &  {scard["team1inngs2Runs"]}/{scard["team1inngs2Wickets"]}</div>}
+            </div>
+            <div className="rc_block">
+            <div className="rc_team">{team2Name}</div>
+            {scard["team2inngs2Overs"] === undefined ?
+            <div className="rc_score">{scard["team2inngs1Runs"]}/{scard["team2inngs1Wickets"]}</div>
+            : <div className="rc_score">{scard["team2inngs1Runs"]}/{scard["team2inngs1Wickets"]}  &  {scard["team2inngs2Runs"]}/{scard["team2inngs2Wickets"]}</div>}
+            </div>
         </div>
         )
     }
@@ -147,32 +233,23 @@ function RecentDetails(props){
             }
         }
     }
-   
     let opcMatches = opc["matches"]
     return (
         <div>
-            <h1>{opc["matchType"]}</h1>
             {opcMatches.map(match => (
-                <div key={match["matchId"]}>
-                    <Link to={'/matchDetails/' + match["matchId"]}>
+                <div key={match["matchId"]} className="rc_whole">
+                    <Link to={'/matchDetails/' + match["matchId"]} style={{textDecoration:'none'}}>
+                    <div className="part1">
+                    <div>{match["seriesName"]}</div>
+                    <div>{match["matchDesc"]}</div>
+                    <div>{match["stadium"]}</div>
+                    <div>{match["city"]}</div>
+                    </div>
 
-                    <div>Series Name: {match["seriesName"]}</div>
-                    
-                    <div>Description: {match["matchDesc"]}</div>
-                    
-                    <div>Format: {match["matchFormat"]}</div>
-                    
-                    <div>Team1: {match["team1Name"]}</div>
-                    
-                    <div>Team2: {match["team2Name"]}</div>
-                    
-                    <div>stadium: {match["stadium"]}</div>
-
-                    <div>city: {match["city"]}</div>
-
-                    <div>Status: {match["status"]}</div>
-
-                    <div>Score: <HandleScores obj = {match["scores"]} team1={match["team1Name"]} team2={match["team2Name"]}/></div>
+                    <div className="part2">
+                    <div><HandleScores obj = {match["scores"]} team1={match["team1Name"]} team2={match["team2Name"]}/></div>
+                    <div className="status">{match["status"]}</div>
+                    </div>
                     </Link>
                 </div>
             ))}

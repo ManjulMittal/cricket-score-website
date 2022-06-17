@@ -33,23 +33,18 @@ function UpcomingDetails(props){
     let opcMatches = opc["matches"]
     return (
         <div>
-            <h1>{opc["matchType"]}</h1>
             {opcMatches.map(match => (
-                <div  className='btn-block btn-outline-info' key={match["matchId"]}>
-
-                    <div>Series Name: {match["seriesName"]}</div>
-                    
-                    <div>Description: {match["matchDesc"]}</div>
-                    
-                    <div>Format: {match["matchFormat"]}</div>
-                    
-                    <div>Team1: {match["team1Name"]}</div>
-                    
-                    <div>Team2: {match["team2Name"]}</div>
-                    
-                    <div>stadium: {match["stadium"]}</div>
-
-                    <div>city: {match["city"]}</div>
+                <div  className='rc_whole' key={match["matchId"]}>
+                <div className="part1">
+                    <div>{match["seriesName"]}</div>
+                    <div>{match["matchDesc"]}</div>
+                    <div>{match["stadium"]}</div>
+                    <div>{match["city"]}</div>
+                </div>
+                <div className="part2">
+                <div className="rc_block uc_team">{match["team1Name"]}</div>
+                <div className="rc_block uc_team">{match["team2Name"]}</div>    
+                </div>
                 </div>
             ))}
         </div>

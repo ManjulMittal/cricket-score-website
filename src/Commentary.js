@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
 import {Link} from 'react-router-dom'
+import './Commentary.css';
 
 class Commentary extends Component{
   constructor(props){
@@ -30,7 +31,7 @@ class Commentary extends Component{
     return line;
   }
 
-  
+
 
   componentDidMount(){
     const pathname = window.location.pathname;
@@ -59,26 +60,48 @@ class Commentary extends Component{
     var commentaryTest = items.commentaryLines;
     if(!isLoaded){
       return (
-          <div>
-            <div>
-            <Link to={'/matchDetails/' + matchId}>ScoreCard</Link>  </div>
-            <div> It's Loading....</div>
-          </div>
+        <div class="Loading"><br></br>It's Loading....</div>
       )
     }else{
-      var commentary = commentaryTest
+      var commentary = commentaryTest;
+      var innings = items["miniscore"]["inningsScores"][0]["inningsScore"];
+      var target = innings[0]["target"];
+      var xyz = 0;
+      for(i in innings){
+        if((parseFloat(innings[i]["overs"])*10)%10==6){
+          let tmp = parseInt(innings[i]["overs"])+1;
+          innings[i]["overs"] = tmp;
+          innings[i]["overs"] += ".0";
+        }
+      }
       return (
-        <div>
-          <div>
-          <Link to={'/matchDetails/' + matchId}>ScoreCard</Link></div>
-          <h1>Commentary</h1>
-          <ul>
+        <div className="whole">
+          <div className='nav-icon'>
+          <Link to={'/matchDetails/' + matchId} className="con">Scores</Link></div>
+          <div className="main_content">
+          <ul className="score_board">
+          {innings.map(curInn => (
+              (target === undefined || xyz++ > 0) ? <li key = {i++}>
+              <span className="team"><strong>{curInn["batTeamShortName"]}</strong></span>
+              <span className="score">{curInn["runs"]}/{curInn["wickets"]}</span>
+              <span className="overs">({curInn["overs"]})</span>
+            </li> : <li key = {i++}>
+              <span className="team"><strong>{curInn["batTeamShortName"]}</strong></span>
+              <span className="score">{curInn["runs"]}/{curInn["wickets"]}</span>
+              <span className="overs">({curInn["overs"]})</span>
+              <span className="target"><strong>Target: {target}</strong></span> 
+            </li> 
+            ))}
+          </ul>
+          <ul className='comment_list'>
             {commentary.map(item => (
               item.commentary === undefined ? null : <li key={i++}>
               {this.printComment(item)}
+              <br></br>
+              <br></br>
             </li>
             ))}
-          </ul>
+          </ul></div>
         </div>
       );
     }

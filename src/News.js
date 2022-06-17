@@ -34,7 +34,7 @@ class News extends Component{
     if(!isLoaded){
       return (
           <div>
-            <div> It's Loading....</div>
+            <div className="Loading"> It's Loading....</div>
           </div>
       )
     }else{
