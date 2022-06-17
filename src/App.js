@@ -10,6 +10,7 @@ import Commentary from './Commentary';
 import Matchdetails from './Matchdetails';
 import News from './News';
 import Header from './Header';
+import Meme from './meme';
 import img1 from './Images/100.jpeg';
 import img2 from './Images/200.jpeg';
 import img3 from './Images/300.jpeg';
@@ -40,6 +41,7 @@ function App(){
         <Route path = '/news' element={<News />} />
         <Route path = '/matchDetails/:matchId' element={<Matchdetails />} />
         <Route path = '/matchCommentary/:matchId' element={<Commentary />} />
+        <Route path = '*' element={<Meme />} />
       </Routes>    
     </BrowserRouter>
   )
